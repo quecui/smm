@@ -1,0 +1,16 @@
+{
+  "name": "hungnh.hw",
+  "version": "1.0.0",
+  "description": "My homeworks :)",
+  "main": "",
+  "author": "HungNH <hungnh.uet@gmail.com>",
+  "license": "ISC",
+  "private": true,
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-install": "^0.6.0",
+    "gulp-watch": "^4.3.10"
+  },
+  "dependencies": {}
+}

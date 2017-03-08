@@ -1,0 +1,136 @@
+<md-content  style="height:500px">
+    <md-subheader class="md-no-sticky">Rule management</md-subheader>
+    <md-button class="md-raised md-warn"  ng-click="addRule($event)">Add a rule</md-button>
+
+    <md-list-item
+            style="background-color:#ff4081;" class="md-2-line" ng-click="navigateTo(setting.extraScreen, $event)" layout="row">
+        <div class="md-list-item-text" layout="row" layout-align="start center">
+            <span flex="50">Rule name</span>
+            <span flex="25"></span>
+            <span flex="30">Key words</span>
+            <span flex="80"></span>
+            <span flex="30">Action</span>
+        </div>
+        <md-divider></md-divider>
+    </md-list-item>
+    <md-list-item  class="md-2-line" ng-click="navigateTo(setting.extraScreen, $event)" ng-repeat="rule in rules" layout="row">
+        <div class="md-list-item-text" layout="row" layout-align="start center">
+            <span flex="50">{{rule.ruleName}}</span>
+            <span flex="25"></span>
+            <span flex="30">{{rule.ruleWords}}</span>
+            <span flex="80"></span>
+        <span flex="15">
+            <md-button class="md-raised md-warn" ng-click="showEdit($event,rule)">Edit</md-button>
+        </span>
+        <span flex="15">
+            <md-button class="md-raised md-warn" ng-click="showDelete($event,rule)">Delete</md-button>
+
+        </span>
+        </div>
+        <md-divider></md-divider>
+    </md-list-item>
+
+</md-content>
+
+
+<!--################ ADD MODAL ##################-->
+<script  type="text/ng-template" id="add-rule.html">
+    <md-dialog>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 align="center">Add rule</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content  layout-padding="50">
+            <form name="projectForm">
+                <div layout="row">
+                    <md-input-container flex="50">
+                        <label>Rule Name</label>
+                        <input required name="ruleName" ng-model="rule.ruleName">
+                        <div ng-messages="projectForm.ruleName.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                        {{ruleName}}
+                    </md-input-container>
+                    <md-input-container flex="50">
+                        <label>Rule Words</label>
+                        <input required name="clientName" ng-model="rule.ruleWords">
+                        <div ng-messages="projectForm.ruleWords.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="column">
+                    <md-switch ng-model="data.cb2" aria-label="Switch 2" ng-true-value="'ON'" ng-false-value="'OFF'" class="md-warn">
+                        Hide: {{ data.cb2 }}
+                    </md-switch>
+                    <md-switch ng-model="data.cb2" aria-label="Switch 2" ng-true-value="'ON'" ng-false-value="'OFF'" class="md-warn">
+                        Remove: {{ data.cb2 }}
+                    </md-switch>
+                    <div>
+                        <md-select placeholder="Assign to user" ng-model="user" md-on-open="loadUsers()" style="min-width: 200px;">
+                            <md-option ng-value="user" ng-repeat="user in users">{{user.name}}</md-option>
+                        </md-select>
+                        <p class="md-caption">You have assigned the task to: {{ user ? user.name : 'No one yet' }}</p>
+                    </div>
+                </div>
+
+                <div layout="row">
+                    <md-button type="submit" ng-click="answer(rule)">Submit</md-button>
+                </div>
+            </form>
+        </md-content>
+
+    </md-dialog>
+</script>
+
+<!--############### EDIT MODAL #################-->
+<script  type="text/ng-template" id="edit-rule.html">
+    <md-dialog>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 align="center">Edit rule</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content  layout-padding="50">
+            <form name="projectForm">
+                <div layout="row">
+                    <md-input-container flex="50">
+                        <label>Rule Name</label>
+                        <input required name="ruleName" ng-model="rule.ruleName">
+                        <div ng-messages="projectForm.ruleName.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                        {{ruleName}}
+                    </md-input-container>
+                    <md-input-container flex="50">
+                        <label>Rule Words</label>
+                        <input required name="clientName" ng-model="rule.ruleWords">
+                        <div ng-messages="projectForm.ruleWords.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="column">
+                    <md-switch ng-model="data.cb1" aria-label="Switch 1">
+                        Switch 1: {{ data.cb1 }}
+                    </md-switch>
+
+                    <md-switch ng-model="data.cb2" aria-label="Switch 2" ng-true-value="'yup'" ng-false-value="'nope'" class="md-warn">
+                        Switch 2 (md-warn): {{ data.cb2 }}
+                    </md-switch>
+                </div>
+                <div>
+                    <md-button type="submit" ng-click="answer(rule)">Edit</md-button>
+                </div>
+            </form>
+        </md-content>
+
+    </md-dialog>
+</script>

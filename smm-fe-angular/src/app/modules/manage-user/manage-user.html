@@ -1,0 +1,152 @@
+<md-content  style="height:500px">
+    <md-subheader class="md-no-sticky">User management</md-subheader>
+    <md-button class="md-raised md-warn"  ng-click="inviteUser($event)">Add New User</md-button>
+
+    <md-list-item
+            style="background-color:#ff4081;" class="md-2-line" ng-click="navigateTo(setting.extraScreen, $event)" layout="row">
+        <div class="md-list-item-text" layout="row" layout-align="start center">
+            <span flex="35">NAME</span>
+            <span flex="55" style="border-color: yellow">ROLE</span>
+            <span flex="15">
+                <span style="padding-left: 3em">ACTION</span></span>
+        </div>
+        <md-divider></md-divider>
+    </md-list-item>
+    <md-list-item  class="md-2-line" ng-click="navigateTo(setting.extraScreen, $event)" ng-repeat="user in userList" layout="row">
+        <div class="md-list-item-text" layout="row" layout-align="start center">
+            <span flex="50">{{user.name}}</span>
+            <span flex="25"></span>
+            <span flex="30">{{user.role}}</span>
+            <span flex="80"></span>
+        <span flex="15">
+            <md-button class="md-raised md-warn" ng-click="editRole($event, user)">Edit</md-button>
+        </span>
+        <span flex="15">
+            <md-button class="md-raised md-warn" ng-click="deleteUser($index)">Delete</md-button>
+
+        </span>
+        </div>
+        <md-divider></md-divider>
+    </md-list-item>
+
+</md-content>
+<!--##########################################################################3-->
+<!--<div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="" style="border-color: red">-->
+    <!--<div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center">-->
+        <!--<label for="search" style="font-size: 25px">Search</label>-->
+        <!--<input type="text" ng-model="filterStr.name" id="search" style="float: left; width: 200px"/>-->
+        <!--<md-button class="md-primary md-raised" ng-click="inviteUser($event)">Invite User</md-button>-->
+        <!--<table style="width:70%">-->
+            <!--<tr>-->
+                <!--<th style="text-align: center">Name</th>-->
+                <!--<th style="text-align: center">Role</th>-->
+                <!--<th style="text-align: center">Action</th>-->
+            <!--</tr>-->
+            <!--<tr ng-repeat="user in userList | filter:filterStr">-->
+                <!--<td align="center">{{user.name}}</td>-->
+                <!--<td align="center">{{user.role}}</td>-->
+                <!--<td colspan="2" align="center">-->
+                    <!--<md-button class="md-primary md-raised" ng-click="editRole($event, user)">Edit Role</md-button>-->
+                    <!--<md-button class="md-primary md-raised" ng-click="deleteUser($index)">Delete</md-button>-->
+                <!--</td>-->
+            <!--</tr>-->
+        <!--</table>-->
+    <!--</div>-->
+<!--</div>-->
+<!-- ########################################################################################## -->
+<script type="text/ng-template" id="invite-user.html">
+    <md-dialog>
+        <form ng-cloak ng-submit="answer(email+'-'+ role)" name="myForm">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2 align="center">INVITE USER</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+            <!--<form name="projectForm">-->
+            <md-dialog-content>
+                <div class="md-dialog-content">
+                    <md-input-container>
+                        <label for="email">Email</label>
+                        <input type="email" required ng-model="email" id="email"
+                               style="width: 200px; height: 28px"/>
+                    </md-input-container>
+                    <br/><br/>
+                    <md-input-container class="md-block" top: -25px; height: 12px;>
+                        <span>Role</span>
+                        <md-select ng-model="role" id="role"
+                                   style="width: 200px;margin-left: 6px; height: 28px" required>
+                            <md-option ng-value="value.role" ng-repeat="value in values">
+                                {{value.role}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </md-dialog-content>
+
+            <md-dialog-actions layout="row">
+                <span flex></span>
+                <button type="submit" class="md-warn md-raised md-hue-2 md-button md-ink-ripple"
+                        style="left: -16px;">
+                    Submit
+                </button>
+            </md-dialog-actions>
+            <!--</form>-->
+        </form>
+    </md-dialog>
+</script>
+
+
+<!-- ################################################################################################### -->
+<script type="text/ng-template" id="edit-role.html">
+    <md-dialog>
+        <form ng-cloak>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2 align="center">EDIT ROLE</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                        <!--<md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>-->
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+            <md-dialog-content>
+                <div class="md-dialog-content">
+                    <table>
+                        <tr>
+                            <td style="width: 115px">Name</td>
+                            <td>
+                                ROLE
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{modal.editUser.name}}</td>
+                            <td>
+                                <md-input-container class="md-block">
+                                    <md-select ng-model="role" id="role"
+                                               style="width: 187px; height: 28px" required>
+                                        <md-option ng-value="value.role" ng-repeat="value in values">
+                                            {{value.role}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </md-dialog-content>
+
+            <md-dialog-actions layout="row">
+                <span flex></span>
+                <md-button class="md-warn md-raised md-hue-2 md-button md-ink-ripple"
+                           ng-click="answer(role)" style="left: -14px;">
+                    Submit
+                </md-button>
+            </md-dialog-actions>
+        </form>
+    </md-dialog>
+</script>

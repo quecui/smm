@@ -1,0 +1,10 @@
+hello, i'm here in inbox :P </br>
+<!--<md-button class="md-primary md-raised" ng-click="getPost()">get post</md-button>-->
+
+    <md-list-item ng-repeat = "post in listPost" ng-click="null" flex="90" style="border: solid 1px #d4d4d4;">
+        <img ng-src="src/img/bird.jpg" class="md-avatar" alt="avatar" />
+        <div class="md-list-item-text" layout="column">
+            <h4>{{post.message}}</h4>
+            <em>comments: {{post.totalCmt}},  {{post.created_time}}</em>
+        </div>
+    </md-list-item>

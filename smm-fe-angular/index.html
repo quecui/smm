@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Social Login Demo</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="src/css/custom.css">
+    <style>
+        @font-face {
+            font-family:"icomoon";
+            src:url("https://cdn.rawgit.com/angular/material/master/docs/app/fonts/icomoon.eot");
+            font-weight:normal;
+            font-style:normal;
+        }
+
+        @font-face {
+            font-family: 'icomoon';
+            src:url('https://cdn.rawgit.com/angular/material/master/docs/app/fonts/icomoon.eot?-cmq1um');
+            src:url('https://cdn.rawgit.com/angular/material/master/docs/app/fonts/icomoon.eot?#iefix-cmq1um') format('embedded-opentype'),
+            url('https://cdn.rawgit.com/angular/material/master/docs/app/fonts/icomoon.woff?-cmq1um') format('woff'),
+            url('https://cdn.rawgit.com/angular/material/master/docs/app/fonts/icomoon.ttf?-cmq1um') format('truetype'),
+            url('https://cdn.rawgit.com/angular/material/master/docs/app/fonts/icomoon.svg?-cmq1um#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body layout="column"layout-fill="">
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '222977668161505',
+                xfbml      : true,
+                version    : 'v2.8'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div id="app" ui-view layout="column"></div>
+
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-material/angular-material.js"></script>
+
+    <!-- App -->
+    <script src="src/app/app.js"></script>
+    <script src="src/app/config.router.js"></script>
+    <script src="src/app/app.init.js"></script>
+    <script src="src/app/config.js"></script>
+    <script src="src/app/main.js"></script>
+    <script src="src/app/constant.js"></script>
+    <script src="src/app/modules/user/user.js"></script>
+    <script src="src/app/modules/dashboard/dashboard.js"></script>
+    <script src="src/app/modules/page/page.js"></script>
+    <script src="src/app/modules/verify/verify.js"></script>
+    <!--Services-->
+    <script src="src/app/modules/services/services.js"></script>
+    <script src="src/app/modules/services/userService.js"></script>
+    <script src="src/app/modules/services/oauthService.js"></script>
+    <script src="src/app/modules/services/pageService.js"></script>
+    <script src="src/app/modules/services/ruleService.js"></script>
+
+    <script src="src/app/modules/services/httpRequestInterceptor.js"></script>
+    <script src="src/app/modules/services/verifyService.js"></script>
+
+    <!-- Controllers -->
+    <script src="src/app/modules/user/loginCtrl.js"></script>
+    <script src="src/app/modules/dashboard/dashboardCtrl.js"></script>
+    <script src="src/app/modules/page/pageCtrl.js"></script>
+    <script src="src/app/modules/page-detail/pageDetailCtrl.js"></script>
+    <script src="src/app/modules/inbox/inboxCtrl.js"></script>
+    <script src="src/app/modules/manage-user/manageUserCtrl.js"></script>
+    <script src="src/app/modules/rule-page/rulePageCtrl.js"></script>
+    <script src="src/app/modules/verify/verifyCtrl.js"></script>
+
+</body>
+</html>

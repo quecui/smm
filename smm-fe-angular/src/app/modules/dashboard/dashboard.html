@@ -1,0 +1,47 @@
+
+<div layout="column" layout-fill="">
+
+    <!-- The outer wrapper - need to set height to px or vh -->
+    <div style="height:700px; overflow:hidden">
+        <md-toolbar md-scroll-shrink="" md-colors="{background: 'grey-100'}">
+            <div class="md-toolbar-tools">
+                <div class="pull-left">
+                    <img src="http://wiki.higgsup.com/wp-content/uploads/2016/06/4.512.png" width="120" height="43">
+                </div>
+                <span flex></span>
+                <md-list>
+                    <md-list-item>
+                        <img ng-src="{{avatarUrl}}" alt="" class="md-avatar">
+                        <h4>
+                            <b>  {{displayName}}</b>
+                        </h4>
+                    </md-list-item>
+                </md-list>
+                <md-button class="md-raised" aria-label="Learn More" ng-click="logout()">
+                    Log out
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <!-- Content height does not need to be px any more: -->
+        <md-content style="height:100%">
+            <div layout="row">
+                <div flex="5">
+                    <nav class="main-menu">
+                        <li ng-repeat="page in pages">
+                            <a ui-sref="app.dashboard.page-detail.inbox({pageId: {{page.pageId}} })">
+                                <img class="img-responsive img-circle" ng-src="{{page.avatarPageUrl}}" style="padding: 10px 5px;">
+                                <span class="nav-text" style="padding-left: 10px;">{{page.pageName}}</span>
+                            </a>
+                        </li>
+                    </nav>
+                </div>
+                <md-content flex="90">
+                    <ui-view></ui-view>
+                </md-content>
+            </div>
+
+
+        </md-content>
+    </div>
+</div>
